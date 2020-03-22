@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RD.SALV.CORE", "RD.SALV.COR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RD.SALV.APP", "RD.SALV.APP\RD.SALV.APP\RD.SALV.APP.csproj", "{026F8D70-9863-46B1-A19E-7579143A270E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sc_Package", "Sc_Package", "{54911D1B-C640-4B0C-8283-965CB852B288}"
+	ProjectSection(SolutionItems) = preProject
+		Sc_Package\Sitecore Azure App Insights Log Viewer-1.0.zip = Sc_Package\Sitecore Azure App Insights Log Viewer-1.0.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{096F84A0-E386-49CB-AFEE-4F149111D9F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +31,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C80F0F2-B976-49DE-8982-2C1404F12933} = {096F84A0-E386-49CB-AFEE-4F149111D9F6}
+		{026F8D70-9863-46B1-A19E-7579143A270E} = {096F84A0-E386-49CB-AFEE-4F149111D9F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B5B5874-4535-4736-8508-BFB2E89975A8}

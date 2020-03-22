@@ -104,7 +104,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Global.asax" />
     <Content Include="sitecore\shell\client\Applications\AzureAppInsightsLogViewer\css\addons\datatables-select.css" />
     <Content Include="sitecore\shell\client\Applications\AzureAppInsightsLogViewer\css\addons\datatables-select.min.css" />
     <Content Include="sitecore\shell\client\Applications\AzureAppInsightsLogViewer\css\addons\datatables.css" />
@@ -189,13 +188,10 @@
     <Content Include="sitecore\shell\client\Applications\AzureAppInsightsLogViewer\js\moment.min.js" />
     <Content Include="sitecore\shell\client\Applications\AzureAppInsightsLogViewer\js\pdfmake.min.js" />
     <Content Include="sitecore\shell\client\Applications\AzureAppInsightsLogViewer\js\popper.min.js" />
-    <Content Include="Web.config" />
+    <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AzureLogViewerController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Pipeline\RegisterApiRoute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
