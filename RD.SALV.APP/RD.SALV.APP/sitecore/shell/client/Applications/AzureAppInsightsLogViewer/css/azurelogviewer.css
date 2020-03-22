@@ -1,0 +1,101 @@
+html, body {
+    margin: 0;
+}
+
+#wrapper {
+    min-height: 100%;
+}
+
+.table-section {
+    margin-top: 1%;
+}
+
+
+.form-section {
+    background-color: rgba(240,240,240,0.3);
+    padding: 3%;
+}
+
+.custom-select {
+    max-width: 200px;
+}
+
+#log-viewer-form label {
+    font-size: 15px;
+    color: #0078D4;
+    font-weight: 500;
+}
+
+#daterangepicker {
+    color: grey;
+    font-size: 18px;
+}
+
+footer.page-footer {
+    bottom: 0;
+    color: #fff;
+    width: 100%;
+    position:fixed;
+}
+
+.form-section .dropdown {
+    position: relative;
+    float: right;
+    width: 60%;
+}
+
+label span.required {
+    color: red;
+}
+
+.btn-group > label {
+    color: #fff !important;
+}
+
+.custom-filter {
+    padding: 2%;
+}
+
+.bg {
+    /* The image used */
+    background-image: url('/sitecore modules/shell/AzureLogViewer/img/sitecore_banner.png');
+    /* Half height */
+    height: 50%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+footer.page-footer .footer-copyright {
+    background-color: rgb(194, 45, 45) !important;
+}
+
+div.loading {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    text-align: center;
+}
+
+div.spinning-area {
+    margin-top: 10%;
+}
+
+#tablePreview_wrapper {
+    margin-bottom: 20px;
+    display:block;
+}
+#tablePreview{
+    width:100%;
+}
+
+.row {
+    width: 100%;
+}

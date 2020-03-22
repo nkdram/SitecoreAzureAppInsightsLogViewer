@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Azure App Insights Log Viewer | thesitecorist.net </title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/fontawesome.all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Date Range Picker -->
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
+    <!-- Data table css -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css" />
+
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/azurelogviewer.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Start your project here-->
+    <div class="flex-center flex-column">
+
+        <div class="container-fluid animated fadeIn">
+            <div class="row">
+                <div class="col-12">
+                    <section class="form-section">
+                        <div class="row">
+                            <!--Grid column-->
+                            <div class="col align-self-center">
+                                <form id="log-viewer-form" name="log-viewer-form">
+                                    <!--Grid row-->
+                                    <div class="row">
+                                        <!--Grid column-->
+                                        <div class="col-4">
+                                            <div class=" mb-0">
+                                                <label for="dropdownMenuMenu" class="">Select Cloud Instance <span class="required">*</span></label>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-warning blue lighten-4 dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        Cloud Instances
+                                                    </button>
+                                                    <div class="dropdown-menu cloud-instances" aria-labelledby="dropdownMenuMenu">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Grid column-->
+                                        <!--Grid column-->
+                                        <div class="col-8">
+                                            <div class="input-group mb-3 custom-filter">
+                                                <select class="custom-select" id="messgeExpression">
+                                                    <option selected>Choose...</option>
+                                                    <option value="startswith">StartsWith</option>
+                                                    <option value="endswith">EndsWith</option>
+                                                    <option value="contains">Contains</option>
+                                                    <option value="!contains">Not Contains</option>
+                                                </select>
+                                                <input id="message" type="text" class="form-control" placeholder="Filter by log text">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="md-form mb-0">
+                                                <label for="daterangepicker" class="">Pick Dates <span class="required">*</span></label>
+                                                <input type="text" id="daterangepicker" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="form-check-input"> Log Types <span class="required">*</span></label>
+                                            <!--Verbose = 0,
+                                            Information = 1,
+                                            Warning = 2,
+                                            Error = 3,
+                                            Critical = 4-->
+                                            <div class="btn-group" name="form-check-input" data-toggle="buttons">
+                                                <label class="btn btn-mdb-blue form-check-label light-blue darken-4 ">
+                                                    <input class="form-check-input" type="checkbox" value="1" autocomplete="off"> Information
+                                                </label>
+                                                <label class="btn btn-mdb-yellow form-check-label yellow darken-2">
+                                                    <input class="form-check-input" type="checkbox" value="2" autocomplete="off"> Warning
+                                                </label>
+                                                <label class="btn btn-mdb-orange form-check-label deep-orange darken-1 active ">
+                                                    <input class="form-check-input" type="checkbox" value="3" checked autocomplete="off"> Error
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-group form-inline">
+                                                <label for="form-limit" class="">Limit <span class="required">*</span></label>
+                                                <input type="number" name="form-limit" id="form-limit" min="1" max="5000" value="2000" class="form-control small" required placeholder="Maximum Limit">
+                                            </div>
+                                        </div>
+                                        <div class="col-2 float-right">
+                                            <button class="btn btn-warning green lighten-2" type="submit" id="GetLogs">
+                                                Get Logs
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <section class="table-section">
+                        <div class="row">
+                            <div class="col align-self-center">
+                                <div class="col-auto">
+                                    <!--Table-->
+                                    <table id="tablePreview" class="table table-hover table-striped">
+                                        <!--Table head-->
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Time</th>
+                                                <th>Severity</th>
+                                                <th>Message</th>
+                                            </tr>
+                                        </thead>
+                                        <!--Table head-->
+                                        <!--Table body-->
+                                        <tbody></tbody>
+                                        <!--Table body-->
+                                    </table>
+                                    <!--Table-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row loading">
+                <div class="col-12">
+                    <div class="spinning-area">
+                        <div class="spinner-border text-danger" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <footer class="page-footer font-small">
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">
+                    <a href="https://TheSitecorist.net"> Azure App Insights Sitecore Log Viewer</a>
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+        </div>
+    </div>
+
+    <!-- Start your project here-->
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Datatable JavaScript -->
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <!--Bootstrap Datatable JavaScript -->
+    <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="js/jszip.min.js"></script>
+    <script type="text/javascript" src="js/pdfmake.min.js"></script>
+    <script type="text/javascript" src="js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="js/buttons.print.min.js"></script>
+    <!-- Date range picker JavaScript -->
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <!-- Date range picker JavaScript -->
+    <script type="text/javascript" src="js/daterangepicker.min.js"></script>
+
+    <script type="text/javascript" src="js/azurelogviewer_app.js"></script>
+</body>
+</html>
